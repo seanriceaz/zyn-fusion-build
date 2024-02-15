@@ -16,6 +16,9 @@ MSYS2_PACMAN_DEPS	:= git ruby gcc bison util-macros automake libtool mingw-w64-x
 					mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-gcc-libgfortran \
 					mingw-w64-x86_64-fltk mingw-w64-x86_64-fftw
 
+HOMEBREW_DEPS		:= git ruby ruby-build bison autoconf automake libtool premake cmake wget pkg-config \
+	                   gcc fftw libmxml liblo zlib libx11 mesa libuv fltk
+
 DNF_DEPS := git ruby rubygem-rake ruby-devel bison autoconf automake libtool premake cmake wget pkgconf \
 	    gcc g++ fftw-devel mxml-devel liblo-devel zlib-devel libX11-devel mesa-libGL-devel mesa-libGLU-devel libuv-devel
 
@@ -96,6 +99,15 @@ else ifneq (, $(findstring Msys,$(UNAME)))
 	pacman -Syyu
 	pacman -S $(MSYS2_PACMAN_DEPS)
 
+else ifneq (, $(findstring Darwin,$(UNAME)))
+	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+	@echo ""
+	@echo "  Detected Host environment: Darwin - Mac                      "
+	@echo "  Installing dependencies via Homebrew...                      "
+	@echo ""
+	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+	brew install $(HOMEBREW_DEPS)
+
 else ifneq (, $(findstring CYGWIN,$(UNAME)))
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 	@echo "  Sorry. Cannot install dependencies for Cygwin,                           "
@@ -107,6 +119,7 @@ else ifneq (, $(findstring CYGWIN,$(UNAME)))
 	@echo "  Msys2 is highly recommended.                                             "
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 	@false
+	
 
 else
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
