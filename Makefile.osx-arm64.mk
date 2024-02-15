@@ -91,7 +91,7 @@ copy_zest_files: preinstall_zynaddsubfx
 	cp   -a $(ZEST_PATH)/package/schema	   $(ZYN_FUSION_OUT)/
 	mkdir   $(ZYN_FUSION_OUT)/ZynAddSubFX.lv2
 	cp	  $(ZYNADDSUBFX_BUILD_DIR)/src/Plugin/ZynAddSubFX/lv2/* $(ZYN_FUSION_OUT)/ZynAddSubFX.lv2/
-	cp	  $(ZYNADDSUBFX_BUILD_DIR)/src/Plugin/ZynAddSubFX/vst/ZynAddSubFX.so $(ZYN_FUSION_OUT)/
+	cp	  $(ZYNADDSUBFX_BUILD_DIR)/src/Plugin/ZynAddSubFX/vst/ZynAddSubFX.dylib $(ZYN_FUSION_OUT)/
 	cp	  $(ZYNADDSUBFX_BUILD_DIR)/src/zynaddsubfx $(ZYN_FUSION_OUT)/
 	cp	  $(ZEST_PATH)/install-linux.sh $(ZYN_FUSION_OUT)/
 	cp	  $(ZEST_PATH)/package-README.txt $(ZYN_FUSION_OUT)/README.txt
